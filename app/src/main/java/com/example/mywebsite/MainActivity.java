@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
         wv.getSettings().setUseWideViewPort(true);
         wv.loadUrl("http://akhilmsachu.me");
         styleRecentTasksEntry(this);
+        wv.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
+        wv.setLongClickable(false);
+        // Below line prevent vibration on Long click
+        wv.setHapticFeedbackEnabled(false);
     }
     public static void styleRecentTasksEntry(Activity activity) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
